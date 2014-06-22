@@ -1,7 +1,50 @@
-Linux Cheat Sheet
+#Linux Cheat Sheet
 
-Installing Software
-"aptitude search *rootname*"
+##Installing Software
+###aptitude
+`aptitude search rootname`, where everything in the debian package manager with *rootname* in its name will be displayed.
+<h3>apt-get</h3>
+`sudo apt-get install appname` will install *appname*.
+
+##Searching for Files
+###grep
+Examples<br>
+..*`grep "literal_string" filename` will <br>
+..*`grep "this" demo_*` will<br>
+..*`grep -i "string" FILE`<br>
+..*``<br>
+..*``<br>
+..*``<br>
+.*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+
+###find
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+*``<br>
+
+
+<p class="lucidagrande" style=" bottom: 0; left: 0; width: 100%; text-align: center;">
+Copyright 2014 Frederick S. Ziegler
+</p>
 
 
 Heading
