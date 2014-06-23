@@ -1,5 +1,11 @@
 #Linux Cheat Sheet
-
+    $Id$
+    $Date$
+    $File$
+    $Author$
+    $Revision$
+    $Source$
+    
 ##Installing Software
 ###<font color=#009154>aptitude</font>
    `Usage: aptitude [-S fname] [-u|-i]`<br>
