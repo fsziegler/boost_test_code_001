@@ -4,6 +4,12 @@
 // Version     :
 // Copyright   : Copyright 2014 Frederick S. Ziegler
 // Description : Test code for various Boost libraries
+// Id      $Id$<br>
+// Date    $Date$<br>
+// File    $File$<br>
+// Author  $Author$<br>
+// Rev.    $Revision$<br>
+// Src     $Source$<br>
 //============================================================================
 
 #include <boost/program_options.hpp>
