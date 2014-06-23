@@ -1,10 +1,4 @@
 #Linux Cheat Sheet
-Id      $Id$<br>
-Date    $Date$<br>
-File    $File$<br>
-Author  $Author$<br>
-Rev.    $Revision$<br>
-Src     $Source$<br>
     
 ##Installing Software
 ###<font color=#009154>aptitude</font>
