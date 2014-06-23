@@ -14,14 +14,8 @@ namespace po = boost::program_options;
 #include <map>
 using namespace std;
 
-int boo()
-{
-   return 0;
-}
-
 int main(int ac, char* av[])
 {
-   boo();
    try {
 
        po::options_description desc("Allowed options");
