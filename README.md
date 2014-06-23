@@ -2,7 +2,7 @@
 
 ##Programs to test and demonstrate the Boost C++ library capabilities
 
-This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001) is intended to contain all the instructions and code required to load, build, and run the test programs using Eclipse CDT. It has been developeed using the Kepler version of [**Eclipse CDT**](http://www.eclipse.org/cdt/downloads.php), g++ 4.8.2, [**Boost**](http://www.boost.org/users/download/) 1.55, [**OpenMPI**](http://www.open-mpi.org/software/ompi/v1.8/) 1.8.1, and was developed on the [**Kubuntu**](http://www.kubuntu.org/getkubuntu) 14.04 operating system.
+This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001) is intended to contain all the instructions and code required to load, build, and run the test programs using Eclipse CDT. It has been developeed using the Kepler version of [**Eclipse CDT**](http://www.eclipse.org/cdt/downloads.php), [**g++**](https://gcc.gnu.org/) 4.8.2, [**Boost**](http://www.boost.org/users/download/) 1.55, [**OpenMPI**](http://www.open-mpi.org/software/ompi/v1.8/) 1.8.1, and was developed on the [**Kubuntu**](http://www.kubuntu.org/getkubuntu) 14.04 operating system.
 
 ##System preparation<br>
 * Install Linux onto a computer. The commands listed here are for flavors of Debian Linux, which support the `apt-get` command for installing and updating software. I used [Kubuntu](http://www.kubuntu.org/getkubuntu), a variant of Debian Linux, to develop these instructions and code, as it has my favorite Linux GUI.<br>
@@ -24,7 +24,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 4. Install the the latest **[Boost](http://www.boost.org/users/download/)** library
  * Download boost_ _version_.tar.gz, extract it into its own directory (e.g., ~/dev/boost_1_55_0), and cd to there<br>
  * Run `sudo ./bootstrap.sh` _(this takes tens of minutes)_<br>
- * `gedit ./tools/build/v2/user-config.jam` and append "using mpi ;" to it (including the space before ';')<br>
+ * If you performed step (3), then `gedit ./tools/build/v2/user-config.jam` and append "using mpi ;" to it (including the space before ';')<br>
  * Run `sudo ./b2` _(this takes tens of minutes)_<br>
 
 ##Instructions for configuring Eclipse<br>
