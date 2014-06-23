@@ -4,6 +4,7 @@
 *.h filter=rcs-keywords
 *.c filter=rcs-keywords
 *.cc filter=rcs-keywords
+*.cpp filter=rcs-keywords
 *.m filter=rcs-keywords
 *.mm filter=rcs-keywords
 *.md filter=rcs-keywords
