@@ -9,6 +9,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 * My practice is to create a single root directory for all libraries I will use to develop software. I create ~/dev for this (~/ is the Linux placeholder for /home/_username_/).<br>
  * `mkdir ~/dev`<br>
 * These instructions are from [Boost's "Getting Started on Unix Variants"](http://www.boost.org/doc/libs/1_55_0/more/getting_started/unix-variants.html), but also we want Boost to include OpenMPI, Python support, and bzip file compression support, which enables every aspect of Boost. **You may skip steps 1, 2, and/or 3 if you do not want the associated capability.**<br>
+
 ##Instructions for installing Boost:<br>
 1. Install the **[Python](https://www.python.org/)** development tools<br>
  * Find your Python version (`python --version`) and install its development tools (e.g., `sudo apt-get install python2.7-dev`)<br>
@@ -25,5 +26,6 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
  * Run `sudo ./bootstrap.sh` _(this takes tens of minutes)_<br>
  * `gedit ./tools/build/v2/user-config.jam` and append "using mpi ;" to it (including the space before ';')<br>
  * Run `sudo ./b2` _(this takes tens of minutes)_<br>
+
 ##Instructions for configuring Eclipse<br>
 * document adding libraries, library order, library path, include path, linker flags (-static -lpthread)<br>
