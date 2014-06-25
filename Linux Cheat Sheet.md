@@ -18,15 +18,14 @@
 
 Often, the latest version of an application is not available through apt-get. Following are instructions for making an unsupported version or an application show up in the GNOME menus.<br>
 
-1. Download and copy the application to a directory of your choice (e.g., under ~/bin/).<br>
- * _Make and install this if necessary._<br>
-2. If this is not a later version of an existing application, then skip to (3).<br>
+1. Download and copy the application (_myapp_) to a directory of your choice (e.g., ~/bin/myapp).<br>
+2. If this is not a later version of _myapp_, then skip to (3).<br>
  * Make a copy of the file "/usr/share/applications/myapp.desktop."<br>
  * Run `sudo apt-get remove _myapp_` to remove the outdated version.<br>
-3. Add a _desktop entry_ file under /usr/share/applications; e.g., myapp.desktop. The format is specified [here](http://standards.freedesktop.org/menu-spec/latest/), but it is probably easier to copy the contents of another .desktop file and modify it (or use the copy you backed up in (2)).<br>
- * For the "Exec" value use `Exec=/usr/bin/myapp`<br>
+3. Add a _desktop entry_ file under /usr/share/applications; e.g., _myapp_.desktop. The format is specified [here](http://standards.freedesktop.org/menu-spec/latest/), but it is probably easier to copy the contents of another .desktop file and modify it (or use the copy you backed up in (2)).<br>
+ * For the "Exec" value use "Exec=/usr/bin/_myapp_"<br>
 4. Make a directory for the new application under /usr/share, e.g., `sudo mkdir /usr/share/myapp`.<br>
-5. Copy (or move) the new application to this directory. E.g., `cd ~/bin/myapp && sudo cp -r . /usr/share/myapp/`<br>
+5. Copy (or move) _myapp_ to this directory. E.g., `cd ~/bin/myapp && sudo cp -r . /usr/share/myapp/`<br>
 6. Create a link in /usr/bin to the new application's executable; e.g., `cd  /usr/bin && sudo ln -s /usr/share/myapp/myapp.sh /usr/bin/myapp`.<br>
 7. Run desktop-file-install<br>
  * `sudo apt-get install desktop-file-install`<br>
