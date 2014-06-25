@@ -28,7 +28,6 @@ Often, the latest version of an application is not available through apt-get. Fo
 4. Make a directory for the new application under /usr/share, e.g., `sudo mkdir /usr/share/myapp`.<br>
 5. Copy (or move) the new application to this directory. E.g., `cd ~/bin/myapp && sudo cp -r . /usr/share/myapp/`<br>
 6. Create a link in /usr/bin to the new application's executable; e.g., `cd  /usr/bin && sudo ln -s /usr/share/myapp/myapp.sh /usr/bin/myapp`.<br>
-7. The application should now be accessible and executable from the GNOME menu.
 
 ##Searching for Text in Files
 ###<font color=#009154>grep</font>
