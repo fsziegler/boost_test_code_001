@@ -7,17 +7,12 @@
 
 // <Chrono>
 #include <boost/chrono.hpp>
-#include <boost/chrono/duration.hpp>
-#include <boost/chrono/system_clocks.hpp>
-//#include <boost/type_traits.hpp>
 // </Chrono>
 
 // <Random>
 #include <boost/random/linear_congruential.hpp>
-#include <boost/random/uniform_int.hpp>
 #include <boost/random/uniform_real.hpp>
 #include <boost/random/variate_generator.hpp>
-#include <boost/generator_iterator.hpp>
 
 typedef boost::minstd_rand base_generator_type;
 // </Random>
@@ -40,11 +35,11 @@ void Array() {
    cout << "C++11 Array size = " << tst_array.size() << endl;
 
    base_generator_type generator(42);
-   boost::uniform_real<> uni_dist(0, 1);
-   boost::variate_generator<base_generator_type&, boost::uniform_real<> > uni(
-         generator, uni_dist);
+   uniform_real<> uni_dist(0, 1);
+   variate_generator<base_generator_type&, uniform_real<> > uni(generator,
+         uni_dist);
 
-   boost::chrono::duration<double> sec;
+   chrono::duration<double> sec;
    chrono::steady_clock::time_point start = chrono::steady_clock::now();
    // Forward Iteration Test
    std::cout.setf(std::ios::fixed);
@@ -64,8 +59,9 @@ void Array() {
       ++j;
    }
    assert(len == j);
-   sec = boost::chrono::steady_clock::now() - start;
-   cout << "Forward Array iterations succeeded [took " << sec.count() << " seconds]" << endl;
+   sec = chrono::steady_clock::now() - start;
+   cout << "Forward Array iterations succeeded [took " << sec.count()
+         << " seconds]" << endl;
 
    // Reverse Iteration Test
    for (BAryRItr itr = boost_tst_array.rbegin(); itr < boost_tst_array.rend();
@@ -73,13 +69,13 @@ void Array() {
       --i;
    }
    assert(0 == i);
-   for (AryRItr itr = tst_array.rbegin(); itr < tst_array.rend();
-         ++itr) {
+   for (AryRItr itr = tst_array.rbegin(); itr < tst_array.rend(); ++itr) {
       --j;
    }
    assert(0 == j);
-   sec = boost::chrono::steady_clock::now() - start;
-   cout << "Reverse Array iterations succeeded [took " << sec.count() << " seconds]" << endl;
+   sec = chrono::steady_clock::now() - start;
+   cout << "Reverse Array iterations succeeded [took " << sec.count()
+         << " seconds]" << endl;
 
 }
 
