@@ -15,6 +15,9 @@ namespace po = boost::program_options;
 using namespace std;
 
 int main(int ac, char* av[]) {
+   std::cout << "__cplusplus = " << __cplusplus << std::endl;
+   std::cout << "    201103L = " << 201103L << std::endl;
+
    TOptFuncMap optFuncMap;
    InitOptionFunctionMap(optFuncMap);
 

@@ -10,13 +10,11 @@
 
 #include <boost/function.hpp>
 #include <map>
-#include <string>
 using namespace std;
 
 typedef boost::function<void()> TFuncPtr;
 typedef pair<string, TFuncPtr> TOptFuncPair;
 typedef map<string, TFuncPtr> TOptFuncMap;
-typedef TOptFuncMap::iterator TOptFuncMapItr;
 typedef TOptFuncMap::const_iterator TOptFuncMapCItr;
 
 #endif /* OPTIONFUNCTIONMAP_H_ */
