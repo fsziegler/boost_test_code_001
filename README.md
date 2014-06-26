@@ -32,15 +32,22 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 When creating a project in Eclipse that uses Boost, you must configure Eclipse to build with Boost. Select Project:Properties, which opens the Properties dialog box, and select "[All configurations]" in the Configuration field. _Be sure to do this each time you open the Properties dialog box_. Then:<br>
 ###Enable C++11 compilation<br>
  * In the Properties dialog box select C/C++ Build:Settings:[tab]Tool Settings:**GCC C++ Compiler:Miscellaneous** and add **" -std=c++11"** to the "Other flags field".<br>
- * Next, in C/C++ General:**Preprocessor Include Paths, Macros etc.**:[tab]**Providers** make sure that CDT GCC Built-in Compiler Settings is the only option checked. Select it and make sure that "**Use global provider shared between projects**" is unchecked, and in the field for "**Command to get compiler specs:**" append **" -std=c++0x"**.
- * Under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Miscellaneous **add "-static -lpthread -std=c++11" in the Linker flags** field.<br>
+ * Next, in C/C++ General:**Preprocessor Include Paths, Macros etc.**:[tab]**Providers** make sure that only the following options are selected:
+  * CDT GCC Built-in Compiler Settings<br>
+  * CDT GCC Build Output Parser<br>
+  * CDT GCC Managed Build Setting Entries<br>
+  * CDT User Setting Entries<br>
+ * Select "CDT GCC Built-in Compiler Settings" and make sure that "**Use global provider shared between projects**" is unchecked, and in the field for "**Command to get compiler specs:**" append **" -std=c++11"**. Do this for both Debug and Release. _Note: the latter three options are required in order for the indexer to work properly._
+ * Under C/C++ Build:Settings:[tab]Tool Settings:**GCC C++ Linker:Miscellaneous** add **"-static -lpthread -std=c++11" in the Linker flags** field.<br>
+ * _You can check **whether or not C++11 has been enabled** by navigating to C/C++ General:General:Preprocessor Include Paths, Macros etc.:[tab]**Entries:GNU C++** and inspecting the value of #__cplusplus; if it has a value of 201103L or greater, C++11 is enabled, otherwise not._
  
 ###Add Boost library support<br>
  * **Add the include path** for Boost. In the Properties dialog box select C/C++ Build:Settings:[tab]Tool Settings:**GCC C++ Compiler:Includes** and add the path to the root of the Boost file installation; e.g., ~/dev/boost\_1\_55\_0.<br>
  * Under C/C++ Build:Settings:[tab]Tool Settings:**GCC C++ Linker:Libraries** Library search path (-L) **add the path to the Boost libraries** you built. This is the stage/lib/ directory under the root Boost installation; e.g., ~/dev/boost\_1\_55\_0/stage/lib/.<br>
- * Under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:**Libraries:Libraries** add **the name of each Boost library you will use**. If you are using the program\_options library, the library file is "libboost\_program\_options.a," but the name to add is just "boost\_program\_options." Some Boost libraries do not require linking with a library, so do not worry if you do not see a library for the library you are using.<br>
- * Click Apply, then OK, then Project:C/C++ Index:Rebuild, and then Project:C/C++ Index:Re-resolve unresolved includes.
- * _You can check whether or not C++11 has been enabled by navigating to C/C++ General:[tab]Entries:GNU C++ and inspecting the value of #__cplusplus; if it has a value of 201103L or greater, C++11 is enabled, otherwise not._
+ * Under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:**Libraries:Libraries** add **the name of each Boost library you will use**. For example, if you are using the program\_options library, the library file is "libboost\_program\_options.a," but the name to add is just "boost\_program\_options." Some Boost libraries do not require linking with a library, so do not worry if you do not see a library for the library you are using.<br>
+ * Click Apply, then OK.
+ * It is a good idea to restart Eclipse - **File:Restart**.
+ * Select Project:**C/C++ Index:Rebuild**, and then Project:**C/C++ Index:Re-resolve unresolved includes**.
  * If you build your code and get an error such as: "typedef 'boost\_concept\_check172' locally defined but not used [-Wunused-local-typedefs], boost\_program\_options\_test, line 71, external location: /home/.../general.hpp  C/C++ Problem," try (a) rebuilding the index: Project:C/C++ Index:Rebuild and (b) add the boost\_system library under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries.
- * Note that experience seems to indicate that the order of the boost libraries under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries is important, and that the boost_system library should be at the bottom.
+ * Note that experience seems to indicate that the order of the boost libraries under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries is important, and that the boost_system library should be at the bottom. If you change or remove a library and get immediate compiler errors, try restarting Eclipse as this often works.
  
