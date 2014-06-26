@@ -30,6 +30,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 
 ##Instructions for configuring Eclipse<br>
 1. When creating a project in Eclipse that uses Boost, you must configure Eclipse to build with Boost. Select Project:Properties, which opens the Properties dialog box, and select "[All configurations]" in the Configuration field. _Be sure to do this each time you open the Properties dialog box_. Then:<br>
+ * **Enable C++11 compilation**. In the Properties dialog box select C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Compiler:Miscellaneous and add " -std=c++11" to the "Other flags field".<br>
  * **Add the include path** for Boost. In the Properties dialog box select C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Compiler:Includes and add the path to the root of the Boost file installation; e.g., ~/dev/boost\_1\_55\_0.<br>
  * Under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries: Library search path (-L) **add the path to the Boost libraries** you built. This is the stage/lib/ directory under the root Boost installation; e.g., ~/dev/boost\_1\_55\_0/stage/lib/.<br>
  * Under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries **add the name of each Boost library you will use**. If you are using the program_options library, the library file is "libboost\_program\_options.a," but the name to add is just "boost\_program\_options." Some Boost libraries do not require linking with a library, so do not worry if you do not see a library for the library you are using.<br>
