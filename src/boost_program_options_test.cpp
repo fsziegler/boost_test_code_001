@@ -9,15 +9,14 @@
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
 
-#include <iostream>
-#include <iterator>
-#include <map>
+//#include <iostream>
+//#include <iterator>
+//#include <map>
 using namespace std;
 
 int main(int ac, char* av[])
 {
    try {
-
        po::options_description desc("Allowed options");
        desc.add_options()
            ("help", "produce help message")
@@ -42,6 +41,7 @@ int main(int ac, char* av[])
            cout << "Compression level was not set.\n";
        }
    }
+
    catch(exception& e) {
        cerr << "error: " << e.what() << "\n";
        return 1;

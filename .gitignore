@@ -13,4 +13,6 @@ doc/*.txt
 doc/**/*.txt
 /Debug
 # no backup files
-*~
+*.*~
+# no make files
+*.mk
