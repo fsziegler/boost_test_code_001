@@ -11,6 +11,7 @@
 namespace po = boost::program_options;
 #include "OptionFunctionMap.h"
 #include "BoostStringTextProc.h"
+#include "ZiegVersion.h"
 
 using namespace std;
 
@@ -68,8 +69,13 @@ int main(int ac, char* av[]) {
       po::notify(vm);
 
       if (vm.count("help")) {
-         cout << cmdline_options << "\n";
+         cout << cmdline_options << endl;
          return 0;
+      } else if (vm.count("version")) {
+         cout << "   Version: " << ZiegVersion::GetFullVersionString() << endl;
+         cout << "Build Date: " << ZiegVersion::BuildDate << endl;
+         cout << "Build Time: " << ZiegVersion::BuildTime << endl;
+         cout << "      UUID: " << ZiegVersion::UUID << endl;
       }
 
       TOptFuncMapCItr citr = optFuncMap.begin();
