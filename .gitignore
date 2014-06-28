@@ -16,3 +16,5 @@ doc/**/*.txt
 *.*~
 # no make files
 *.mk
+# no .directory files
+.directory 
