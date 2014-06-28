@@ -8,7 +8,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 
 ##System preparation<br>
 * Install Linux onto a PC. The commands listed here are for flavors of Debian Linux, which support the `apt-get` command for installing and updating software. I used [Kubuntu](http://www.kubuntu.org/getkubuntu), a variant of Debian Linux, to develop these instructions and code, as it has my favorite Linux GUI.<br>
-* Install the latest version of Eclipse CDT. See [this site](http://askubuntu.com/questions/26632/how-to-install-eclipse) for instructions on how to do this - apt-get and the Ubuntu Software Center tend to not have the latest versions.
+* Install the latest version of Eclipse CDT ("_C/C++_ _D_evelopment _T_ools"). See [this site](http://askubuntu.com/questions/26632/how-to-install-eclipse) for instructions on how to do this - apt-get and the Ubuntu Software Center tend to not have the latest versions.
 * My practice is to create a single root directory for all libraries I will use to develop software. I create ~/dev for this (~/ is the Linux placeholder for /home/_username_/).<br>
  * `mkdir ~/dev`<br>
 * These instructions are from [Boost's "Getting Started on Unix Variants"](http://www.boost.org/doc/libs/1_55_0/more/getting_started/unix-variants.html), but also we want Boost to include OpenMPI, Python support, and bzip file compression support, which enables every aspect of Boost. **You may skip steps 1, 2, and/or 3 if you do not want the associated capability.**<br>
