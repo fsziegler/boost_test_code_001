@@ -1,4 +1,5 @@
 #include "BoostStringTextProc.h"
+#include "PrintFormats.h"
 
 // <Array>
 #include <boost/array.hpp>
@@ -19,6 +20,7 @@ typedef boost::minstd_rand base_generator_type;
 
 using namespace std;
 using namespace boost;
+using namespace PrintFormats;
 
 void Array() {
    const size_t len = pow(2, 18);
@@ -28,7 +30,7 @@ void Array() {
    typedef std::array<float, (const size_t) len>::reverse_iterator AryRItr;
 
    cout.imbue(std::locale(""));  // Causes formatted numbers with commas
-   cout << "Perform Array tests" << endl;
+   cout << boldOn() << "Perform Array tests" << boldOff() << endl;
    cout << "Testing Boost, C++11, and standard C Arrays of size " << len
          << endl;
 
@@ -67,8 +69,8 @@ void Array() {
    }
    assert(len == i);
    sec = chrono::steady_clock::now() - start;
-   cout << "\t     Forward iteration of Boost Array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\t     Forward iteration of Boost Array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    size_t j(0);
    start = chrono::steady_clock::now();
@@ -79,8 +81,8 @@ void Array() {
    }
    assert(len == j);
    sec = chrono::steady_clock::now() - start;
-   cout << "\t     Forward iteration of C++11 Array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\t     Forward iteration of C++11 Array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    size_t k(0);
    start = chrono::steady_clock::now();
@@ -91,8 +93,8 @@ void Array() {
    }
    assert(len == k);
    sec = chrono::steady_clock::now() - start;
-   cout << "\tForward iteration of standard C array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\tForward iteration of standard C array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    cout << "Forward Array iterations succeeded!" << endl;
 
@@ -106,8 +108,8 @@ void Array() {
    }
    assert(0 == i);
    sec = chrono::steady_clock::now() - start;
-   cout << "\t     Reverse iteration of Boost Array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\t     Reverse iteration of Boost Array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    start = chrono::steady_clock::now();
    for (AryRItr itr = tst_array.rbegin(); itr < tst_array.rend(); ++itr) {
@@ -117,8 +119,8 @@ void Array() {
    }
    assert(0 == j);
    sec = chrono::steady_clock::now() - start;
-   cout << "\t     Reverse iteration of C++11 Array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\t     Reverse iteration of C++11 Array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    start = chrono::steady_clock::now();
    for (size_t x = len - 1; -1 > x; --x) {
@@ -131,8 +133,8 @@ void Array() {
    }
    assert(0 == k);
    sec = chrono::steady_clock::now() - start;
-   cout << "\tReverse iteration of standard C array took " << sec.count() * 1000
-         << " milliseconds" << endl;
+   cout << "\tReverse iteration of standard C array took " << ltCyan()
+         << sec.count() * 1000 << ltGray() << " milliseconds" << endl;
 
    cout << "Reverse Array iterations succeeded!" << endl;
 }

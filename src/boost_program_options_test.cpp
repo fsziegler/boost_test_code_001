@@ -12,13 +12,13 @@ namespace po = boost::program_options;
 #include "OptionFunctionMap.h"
 #include "BoostStringTextProc.h"
 #include "ZiegVersion.h"
+#include "PrintFormats.h"
 
 using namespace std;
+using namespace PrintFormats;
 
 int main(int ac, char* av[]) {
-   std::cout << "__cplusplus = " << __cplusplus << std::endl;
-   std::cout << "    201103L = " << 201103L << std::endl;
-
+   enableColors(false);
    TOptFuncMap optFuncMap;
    InitOptionFunctionMap(optFuncMap);
 
@@ -27,6 +27,7 @@ int main(int ac, char* av[]) {
       basic_opts.add_options()
          ("version,v", "print version string")
          ("help","produce help message")
+         ("color","show colors")
       ;
 
       po::options_description tr1_opts("TR1 options");
@@ -68,14 +69,52 @@ int main(int ac, char* av[]) {
       po::store(po::parse_command_line(ac, av, cmdline_options), vm);
       po::notify(vm);
 
+      if (vm.count("color")) {
+         enableColors(true);
+      }
+
       if (vm.count("help")) {
          cout << cmdline_options << endl;
          return 0;
-      } else if (vm.count("version")) {
-         cout << "   Version: " << ZiegVersion::GetFullVersionString() << endl;
-         cout << "Build Date: " << ZiegVersion::BuildDate << endl;
-         cout << "Build Time: " << ZiegVersion::BuildTime << endl;
-         cout << "      UUID: " << ZiegVersion::UUID << endl;
+      }
+
+      if(201103L <= __cplusplus) {
+         cout << boldOn() << "*** Using C++11 or better :-) ***" << boldOff() << endl;
+      } else {
+         cout << boldOn() << "*** Using C++ < C++11 :-( ***" << boldOff() << endl;
+      }
+
+      if (vm.count("version")) {
+         cout << boldOn() << "   Version: " << ltCyan() << ZiegVersion::GetFullVersionString() << reset() << endl;
+         cout << boldOn() << "Build Date: " << ltCyan() << ZiegVersion::BuildDate << reset() << endl;
+         cout << boldOn() << "Build Time: " << ltCyan() << ZiegVersion::BuildTime << reset() << endl;
+         cout << boldOn() << "      UUID: " << ltCyan() << ZiegVersion::UUID << reset() << endl;
+      }
+
+      if (vm.count("color")) {
+         enableColors(true);
+         cout << boldOn() << ltGreen() << "Colors:" << reset() << endl;
+         cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
+               "Purple LtPurple LtBlue Cyan LtCyan LtGray White" << endl;
+         cout << black()      << "Black ";
+         cout << dkGray()     << "DkGray ";
+         cout << red()        << "Red ";
+         cout << ltRed()      << "LtRed ";
+         cout << green()      << "Green ";
+         cout << ltGreen()    << "LtGreen ";
+         cout << brown()      << "Brown ";
+         cout << yellow()     << "Yellow ";
+         cout << blue()       << "Blue ";
+         cout << purple()     << "Purple ";
+         cout << ltPurple()   << "LtPurple ";
+         cout << ltBlue()     << "LtBlue ";
+         cout << cyan()       << "Cyan ";
+         cout << ltCyan()     << "LtCyan ";
+         cout << ltGray()     << "LtGray ";
+         cout << white()      << "White" << endl;
+         cout << boldOn()     << "Bold text ";
+         cout << boldOff()    << "Non-bold (normal) text" << endl;
+         cout << reset() << endl;
       }
 
       TOptFuncMapCItr citr = optFuncMap.begin();
