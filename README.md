@@ -53,3 +53,5 @@ When creating a project in Eclipse that uses Boost, you must configure Eclipse t
  * If you build your code and get an error such as: "typedef 'boost\_concept\_check172' locally defined but not used [-Wunused-local-typedefs], boost\_program\_options\_test, line 71, external location: /home/.../general.hpp  C/C++ Problem," try (a) rebuilding the index: Project:C/C++ Index:Rebuild and (b) add the boost\_system library under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries.
  * Note that experience seems to indicate that the order of the boost libraries under C/C++ Build:Settings:[tab]Tool Settings:GCC C++ Linker:Libraries:Libraries is important, and that the boost_system library should be at the bottom. If you change or remove a library and get immediate compiler errors, try restarting Eclipse as this often works.
  
+###Miscellaneous<br>
+ * Debugging STL structures is much easier if you use "pretty-printing" - see this [Eclipse Wiki](http://wiki.eclipse.org/CDT/User/FAQ#I.27ve_been_asked_for_.27gdb_traces.27.2C_where_can_I_find_them.3F) for instructions.
