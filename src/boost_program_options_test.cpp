@@ -7,18 +7,120 @@
 //============================================================================
 
 #include <boost/program_options.hpp>
+#include <deque>
+#include <string>
 
 namespace po = boost::program_options;
 #include "OptionFunctionMap.h"
 #include "BoostStringTextProc.h"
 #include "ZiegVersion.h"
-#include "PrintFormats.h"
+#include "FormatStream.h"
 
 using namespace std;
-using namespace PrintFormats;
+using namespace FormatStream;
+
+typedef deque<string> StrDeque;
+typedef StrDeque::const_iterator StrDequeCItr;
+void populateDeque(bool bold, bool uline, bool inv, bool bckgnd, bool intens,
+      StrDeque& outstrs) {
+   if (bold) {
+      outstrs.push_front("Bold");
+   }
+   if (uline) {
+      outstrs.push_front("Underline");
+   }
+   if (inv) {
+      outstrs.push_front("Inverse");
+   }
+   if (bckgnd) {
+      outstrs.push_front("Background");
+   }
+   if (intens) {
+      outstrs.push_front("Hi Intensity");
+   }
+   if(!bold && !uline && !inv && !bckgnd && !intens) {
+      outstrs.push_front("Normal");
+   }
+}
+
+void PopulateOStream(StrDeque& str_deque, ostream &out_strm) {
+   for(StrDequeCItr itr = str_deque.begin(); itr != str_deque.end(); ++itr) {
+      out_strm << (*itr) << " ";
+   }
+}
+
+const string::size_type GetStreamLen(StrDeque& str_deque) {
+   stringstream str_strm;
+   PopulateOStream(str_deque, str_strm);
+   return str_strm.str().size();
+
+}
+
+void printCombo(bool bold, bool uline, bool inv, bool bckgnd, bool intens,
+      const char* (*color_func)(), ostream& out_strm) {
+
+   StrDeque max_deque, str_deque;
+   populateDeque(true, true, true, true, true, max_deque);
+   populateDeque(bold, uline, inv, bckgnd, intens, str_deque);
+   const string::size_type maxlen = GetStreamLen(max_deque);
+   const string::size_type strlen = GetStreamLen(str_deque);
+   // Print normal mode first
+   for(string::size_type i = 0; i < (maxlen - strlen); ++i) {
+      out_strm << " ";
+   }
+   (*color_func)();
+   PopulateOStream(str_deque, out_strm);
+
+   if (bold) {
+      out_strm << s_boldOn();
+   }
+   if (uline) {
+      out_strm << s_ulineOn();
+   }
+   if (inv) {
+      out_strm << s_invOn();
+   }
+   if (bckgnd) {
+      out_strm << s_bckgndOn();
+   }
+   if (intens) {
+      out_strm << s_intensOn();
+   }
+
+   (*color_func)();
+   PopulateOStream(str_deque, out_strm);
+   out_strm << s_boldOff();
+   out_strm << s_ulineOff();
+   out_strm << s_invOff();
+   out_strm << s_reset();
+   out_strm << s_bckgndOff();
+   out_strm << s_intensOff();
+   out_strm << endl;
+}
+
+void CycleOutputFormats(const char* (*color_func)(), const char* color_str,
+      ostream& out_strm) {
+//   out_strm.clear();
+   out_strm << s_reset() << color_str << " ";
+   out_strm << s_boldOn() << s_ulineOn() << (*color_func)() << color_str << endl;
+   out_strm << s_boldOff() << s_ulineOff() << s_reset() << endl;
+   for (int bold = 0; bold < 2; ++bold) {
+      for (int uline = 0; uline < 2; ++uline) {
+         for (int inverse = 0; inverse < 2; ++inverse) {
+            for (int bckgnd = 0; bckgnd < 2; ++bckgnd) {
+               for (int intens = 0; intens < 2; ++intens) {
+                  printCombo((1 == bold), (1 == uline), (1 == inverse),
+                        (1 == bckgnd), (1 == intens), color_func, out_strm);
+               }
+            }
+         }
+      }
+   }
+}
 
 int main(int ac, char* av[]) {
-   enableColors(false);
+   enableColors(true);
+   enableDebug(true);
    TOptFuncMap optFuncMap;
    InitOptionFunctionMap(optFuncMap);
 
@@ -78,43 +180,63 @@ int main(int ac, char* av[]) {
          return 0;
       }
 
-      if(201103L <= __cplusplus) {
-         cout << boldOn() << "*** Using C++11 or better :-) ***" << boldOff() << endl;
+      if (201103L <= __cplusplus) {
+         cout << s_boldOn() << "*** Using C++11 or better :-) ***"
+               << s_boldOff() << endl;
       } else {
-         cout << boldOn() << "*** Using C++ < C++11 :-( ***" << boldOff() << endl;
+         cout << s_boldOn() << "*** Using C++ < C++11 :-( ***" << s_boldOff()
+               << endl;
       }
 
       if (vm.count("version")) {
-         cout << boldOn() << "   Version: " << ltCyan() << ZiegVersion::GetFullVersionString() << reset() << endl;
-         cout << boldOn() << "Build Date: " << ltCyan() << ZiegVersion::BuildDate << reset() << endl;
-         cout << boldOn() << "Build Time: " << ltCyan() << ZiegVersion::BuildTime << reset() << endl;
-         cout << boldOn() << "      UUID: " << ltCyan() << ZiegVersion::UUID << reset() << endl;
+         cout << s_boldOn() << "   Version: " << s_ltCyan()
+               << ZiegVersion::GetFullVersionString() << s_reset() << endl;
+         cout << s_boldOn() << "Build Date: " << s_ltCyan()
+               << ZiegVersion::BuildDate << s_reset() << endl;
+         cout << s_boldOn() << "Build Time: " << s_ltCyan()
+               << ZiegVersion::BuildTime << s_reset() << endl;
+         cout << s_boldOn() << "      UUID: " << s_ltCyan() << ZiegVersion::UUID
+               << s_reset() << endl;
       }
 
       if (vm.count("color")) {
          enableColors(true);
-         cout << boldOn() << ltGreen() << "Colors:" << reset() << endl;
+         cout << s_boldOn() << s_ltGreen() << "Colors:" << s_reset() << endl;
          cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
                "Purple LtPurple LtBlue Cyan LtCyan LtGray White" << endl;
-         cout << black()      << "Black ";
-         cout << dkGray()     << "DkGray ";
-         cout << red()        << "Red ";
-         cout << ltRed()      << "LtRed ";
-         cout << green()      << "Green ";
-         cout << ltGreen()    << "LtGreen ";
-         cout << brown()      << "Brown ";
-         cout << yellow()     << "Yellow ";
-         cout << blue()       << "Blue ";
-         cout << purple()     << "Purple ";
-         cout << ltPurple()   << "LtPurple ";
-         cout << ltBlue()     << "LtBlue ";
-         cout << cyan()       << "Cyan ";
-         cout << ltCyan()     << "LtCyan ";
-         cout << ltGray()     << "LtGray ";
-         cout << white()      << "White" << endl;
-         cout << boldOn()     << "Bold text ";
-         cout << boldOff()    << "Non-bold (normal) text" << endl;
-         cout << reset() << endl;
+         cout << s_black()      << "Black ";
+         cout << s_dkGray()     << "DkGray ";
+         cout << s_red()        << "Red ";
+         cout << s_ltRed()      << "LtRed ";
+         cout << s_green()      << "Green ";
+         cout << s_ltGreen()    << "LtGreen ";
+         cout << s_brown()      << "Brown ";
+         cout << s_yellow()     << "Yellow ";
+         cout << s_blue()       << "Blue ";
+         cout << s_ltBlue()     << "LtBlue ";
+         cout << s_purple()     << "Purple ";
+         cout << s_ltPurple()   << "LtPurple ";
+         cout << s_cyan()       << "Cyan ";
+         cout << s_ltCyan()     << "LtCyan ";
+         cout << s_ltGray()     << "LtGray ";
+         cout << s_white()      << "White" << endl;
+         cout << s_boldOn()     << "Bold text ";
+         cout << s_boldOff()    << "Non-bold (normal) text" << endl;
+         cout << s_reset() << endl;
+
+         CycleOutputFormats(&s_black, "Black", cout);
+         CycleOutputFormats(&s_red, "Red", cout);
+         CycleOutputFormats(&s_green, "Green", cout);
+         CycleOutputFormats(&s_brown, "Yellow", cout);  // yellow is bold brown
+         CycleOutputFormats(&s_blue, "Blue", cout);
+         CycleOutputFormats(&s_purple, "Purple", cout);
+         CycleOutputFormats(&s_cyan, "Cyan", cout);
+         CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
+
+         enableColors(false);
+         cout << endl << "Note: If you see garbage characters, then your "
+               "terminal does not support colors." << endl;
+         enableColors(true);
       }
 
       TOptFuncMapCItr citr = optFuncMap.begin();
