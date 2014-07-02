@@ -128,6 +128,7 @@ int main(int ac, char* av[]) {
          ("version,v", "print version string")
          ("help","produce help message")
          ("color","show colors")
+         ("extcolor","show extended color & formatting")
       ;
 
       po::options_description tr1_opts("TR1 options");
@@ -169,7 +170,7 @@ int main(int ac, char* av[]) {
       po::store(po::parse_command_line(ac, av, cmdline_options), vm);
       po::notify(vm);
 
-      if (vm.count("color")) {
+      if (vm.count("color") || vm.count("extcolor")) {
          enableColors(true);
       }
 
@@ -197,7 +198,7 @@ int main(int ac, char* av[]) {
          cout << s_yellow() << ZiegVersion::UUID << endl;
       }
 
-      if (vm.count("color")) {
+      if (vm.count("color") || vm.count("extcolor")) {
          cout << s_boldOn() << s_ulineOn() << s_ltGreen() << "Colors:" << endl;
          cout << s_ulineOff() << s_reset();
          cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
@@ -225,18 +226,19 @@ int main(int ac, char* av[]) {
          cout << s_invOn()      << "  Inverted text";
          cout << s_invOff()     << " Non-inverted (normal) text" << endl;
          cout << s_reset() << endl;
-
-         CycleOutputFormats(&s_black, "Black", cout);
-         CycleOutputFormats(&s_red, "Red", cout);
-         CycleOutputFormats(&s_green, "Green", cout);
-         CycleOutputFormats(&s_brown, "Yellow", cout);  // yellow is bold brown
-         CycleOutputFormats(&s_blue, "Blue", cout);
-         CycleOutputFormats(&s_purple, "Purple", cout);
-         CycleOutputFormats(&s_cyan, "Cyan", cout);
-         CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
-
-         cout << endl << "Note: If you see garbage characters, then your "
-               "terminal does not support colors." << endl;
+         if (vm.count("extcolor")) {
+            CycleOutputFormats(&s_black, "Black", cout);
+            CycleOutputFormats(&s_red, "Red", cout);
+            CycleOutputFormats(&s_green, "Green", cout);
+            CycleOutputFormats(&s_brown, "Yellow", cout);  // yellow is bold brown
+            CycleOutputFormats(&s_blue, "Blue", cout);
+            CycleOutputFormats(&s_purple, "Purple", cout);
+            CycleOutputFormats(&s_cyan, "Cyan", cout);
+            CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
+            cout << endl;
+         }
+         cout << "Note: If you see garbage characters, then your "
+               "terminal does not support colors." << endl << endl;
       }
 
       TOptFuncMapCItr citr = optFuncMap.begin();

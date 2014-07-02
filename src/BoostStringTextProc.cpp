@@ -32,19 +32,24 @@ void Array() {
    typedef std::array<float, (const size_t) len>::reverse_iterator AryRItr;
 
    cout.imbue(std::locale(""));  // Causes formatted numbers with commas
-   cout << s_boldOn() << "Perform Array tests" << s_boldOff() << endl;
-   cout << "Testing Boost, C++11, and standard C Arrays of size " << len
-         << endl;
+   cout << s_boldOn() << s_ulineOn() << "Perform Array tests" << endl;
+   cout << s_boldOff() << s_ulineOff()
+         << "Testing Boost, C++11, and standard C Arrays of size ";
+         cout << s_ltCyan()
+         << len << endl;
 
    static boost::array<float, (const size_t) len> boost_tst_array;
    std::array<float, (const size_t) len> tst_array;
 
    float c_array[len];
    cout.setf(ios_base::fixed);
-   cout << "     Boost Array size = " << fixed << boost_tst_array.size()
-         << endl;
-   cout << "     C++11 Array size = " << tst_array.size() << endl;
-   cout << "standard C array size = " << tst_array.size() << endl;
+   cout << s_reset() << "     Boost Array size = " << s_ltCyan()
+         << boost_tst_array.size() << endl;
+   cout << s_reset() << "     C++11 Array size = " << s_ltCyan()
+         << tst_array.size() << endl;
+   cout << s_reset() << "standard C array size = " << s_ltCyan()
+         << tst_array.size() << endl;
+   cout << s_reset();
 
    base_generator_type generator(42);
    uniform_real<> uni_dist(0, 1);
@@ -72,7 +77,8 @@ void Array() {
    assert(len == i);
    sec = chrono::steady_clock::now() - start;
    cout << "\t     Forward iteration of Boost Array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    size_t j(0);
    start = chrono::steady_clock::now();
@@ -84,7 +90,8 @@ void Array() {
    assert(len == j);
    sec = chrono::steady_clock::now() - start;
    cout << "\t     Forward iteration of C++11 Array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    size_t k(0);
    start = chrono::steady_clock::now();
@@ -96,7 +103,8 @@ void Array() {
    assert(len == k);
    sec = chrono::steady_clock::now() - start;
    cout << "\tForward iteration of standard C array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    cout << "Forward Array iterations succeeded!" << endl;
 
@@ -111,7 +119,8 @@ void Array() {
    assert(0 == i);
    sec = chrono::steady_clock::now() - start;
    cout << "\t     Reverse iteration of Boost Array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    start = chrono::steady_clock::now();
    for (AryRItr itr = tst_array.rbegin(); itr < tst_array.rend(); ++itr) {
@@ -122,21 +131,14 @@ void Array() {
    assert(0 == j);
    sec = chrono::steady_clock::now() - start;
    cout << "\t     Reverse iteration of C++11 Array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    start = chrono::steady_clock::now();
-   for (size_t x = len - 1; -1 > x; --x) {
-      if (5 == x) {
-         int q(8);
-      }
-      val = c_array[x] / 2;
-      c_array[x] = val * 2;
-      --k;
-   }
-   assert(0 == k);
    sec = chrono::steady_clock::now() - start;
    cout << "\tReverse iteration of standard C array took " << s_ltCyan()
-         << sec.count() * 1000 << s_ltGray() << " milliseconds" << endl;
+         << sec.count() * 1000;
+   cout << s_ltGreen() << " milliseconds" << s_reset() << endl;
 
    cout << "Reverse Array iterations succeeded!" << endl;
 }
