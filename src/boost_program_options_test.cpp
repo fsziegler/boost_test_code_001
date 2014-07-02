@@ -100,7 +100,6 @@ void printCombo(bool bold, bool uline, bool inv, bool bckgnd, bool intens,
 
 void CycleOutputFormats(const char* (*color_func)(), const char* color_str,
       ostream& out_strm) {
-//   out_strm.clear();
    out_strm << s_reset() << color_str << " ";
    out_strm << s_boldOn() << s_ulineOn() << (*color_func)() << color_str << endl;
    out_strm << s_boldOff() << s_ulineOff() << s_reset() << endl;
@@ -119,7 +118,6 @@ void CycleOutputFormats(const char* (*color_func)(), const char* color_str,
 }
 
 int main(int ac, char* av[]) {
-   enableColors(true);
    enableDebug(true);
    TOptFuncMap optFuncMap;
    InitOptionFunctionMap(optFuncMap);
@@ -189,19 +187,19 @@ int main(int ac, char* av[]) {
       }
 
       if (vm.count("version")) {
-         cout << s_boldOn() << "   Version: " << s_ltCyan()
-               << ZiegVersion::GetFullVersionString() << s_reset() << endl;
-         cout << s_boldOn() << "Build Date: " << s_ltCyan()
-               << ZiegVersion::BuildDate << s_reset() << endl;
-         cout << s_boldOn() << "Build Time: " << s_ltCyan()
-               << ZiegVersion::BuildTime << s_reset() << endl;
-         cout << s_boldOn() << "      UUID: " << s_ltCyan() << ZiegVersion::UUID
-               << s_reset() << endl;
+         cout << s_ltCyan() << "   Version: ";
+         cout << s_yellow() << ZiegVersion::GetFullVersionString() << endl;
+         cout << s_ltCyan() << "Build Date: ";
+         cout << s_yellow() << ZiegVersion::BuildDate << endl;
+         cout << s_ltCyan() << "Build Time: ";
+         cout << s_yellow() << ZiegVersion::BuildTime << endl;
+         cout << s_ltCyan() << "      UUID: ";
+         cout << s_yellow() << ZiegVersion::UUID << endl;
       }
 
       if (vm.count("color")) {
-         enableColors(true);
-         cout << s_boldOn() << s_ltGreen() << "Colors:" << s_reset() << endl;
+         cout << s_boldOn() << s_ulineOn() << s_ltGreen() << "Colors:" << endl;
+         cout << s_ulineOff() << s_reset();
          cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
                "Purple LtPurple LtBlue Cyan LtCyan LtGray White" << endl;
          cout << s_black()      << "Black ";
@@ -220,8 +218,12 @@ int main(int ac, char* av[]) {
          cout << s_ltCyan()     << "LtCyan ";
          cout << s_ltGray()     << "LtGray ";
          cout << s_white()      << "White" << endl;
-         cout << s_boldOn()     << "Bold text ";
-         cout << s_boldOff()    << "Non-bold (normal) text" << endl;
+         cout << s_boldOn()     << "      Bold text";
+         cout << s_boldOff()    << " Non-bold (normal) text" << endl;
+         cout << s_ulineOn()    << "Underlined text";
+         cout << s_ulineOff()   << " Non-underlined (normal) text" << endl;
+         cout << s_invOn()      << "  Inverted text";
+         cout << s_invOff()     << " Non-inverted (normal) text" << endl;
          cout << s_reset() << endl;
 
          CycleOutputFormats(&s_black, "Black", cout);
@@ -233,10 +235,8 @@ int main(int ac, char* av[]) {
          CycleOutputFormats(&s_cyan, "Cyan", cout);
          CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
 
-         enableColors(false);
          cout << endl << "Note: If you see garbage characters, then your "
                "terminal does not support colors." << endl;
-         enableColors(true);
       }
 
       TOptFuncMapCItr citr = optFuncMap.begin();

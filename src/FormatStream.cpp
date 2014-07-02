@@ -84,7 +84,6 @@ private:
    StrSet history_set;
    const char* history_array[history_array_size];
 
-   bool IsTextDowngrade() const;
    const char* GetTextCode() const;
    const char* GetSurroundCode() const;
    const char* GetFormatCode();
@@ -172,14 +171,6 @@ const char* CFormatStream::GetCode() {
    return GetFormatCode();
 }
 
-bool CFormatStream::IsTextDowngrade() const {
-   return (((kOn == prev_attr.bold_state) && (kOff == curr_attr.bold_state))
-         || ((kOn == prev_attr.underline_state)
-               && (kOff == curr_attr.underline_state))
-         || ((kOn == prev_attr.inverse_state)
-               && (kOff == curr_attr.inverse_state)));
-}
-
 const string noformat_code =  "\033[0";
 const string b_code        =  "\033[1";
 const string u_code        =  "\033[4";
@@ -196,38 +187,25 @@ const char* CFormatStream::GetTextCode() const {
    // Not thread safe
    static string tmpstr;
    tmpstr.clear();
-   if(!IsTextDowngrade()) {
-      if(kOn == curr_attr.bold_state) {
-         tmpstr = b_code;
-      } else if(kOn == curr_attr.underline_state) {
-         tmpstr = u_code;
-      } else if(kOn == curr_attr.inverse_state) {
-         tmpstr = i_code;
-      } else {
-         tmpstr = noformat_code;
-      }
-      tmpstr += delimit_code;
-   } else {
-      deque<string> stack;
-      PopulateQueue(kOn, noformat_code, stack);
-      PopulateQueue(curr_attr.bold_state, b_code, stack);
-      PopulateQueue(curr_attr.underline_state, u_code, stack);
-      PopulateQueue(curr_attr.inverse_state, i_code, stack);
-      while(1 < stack.size()) {
-         tmpstr += stack.back();
-         tmpstr += end_code;
-         stack.pop_back();
-      }
+   deque<string> stack;
+   PopulateQueue(kOn, noformat_code, stack);
+   PopulateQueue(curr_attr.bold_state, b_code, stack);
+   PopulateQueue(curr_attr.underline_state, u_code, stack);
+   PopulateQueue(curr_attr.inverse_state, i_code, stack);
+   while (1 < stack.size()) {
       tmpstr += stack.back();
-      tmpstr += delimit_code;
+      tmpstr += end_code;
+      stack.pop_back();
    }
+   tmpstr += stack.back();
+   tmpstr += delimit_code;
    return tmpstr.c_str();
 }
 
-const string nosurr_code   =  "3";
-const string bg_code       =  "4";
-const string hi_code       =  "9";
-const string bghi_code     =  "10";
+const string nosurr_code = "3";
+const string bg_code     = "4";
+const string hi_code     = "9";
+const string bghi_code   = "10";
 const char* CFormatStream::GetSurroundCode() const {
    const bool bg = (kOn == curr_surr.background_state);
    const bool hi = (kOn == curr_surr.hi_intensity_state);
@@ -269,6 +247,7 @@ const string  Color_Off="\033[0m";      // Text Reset
 const char* s_reset() {
    return Color_Off.c_str();
 }
+
 void enableColors(bool state) {
    fs.EnableColors(state);
 }
@@ -277,7 +256,6 @@ void enableDebug(bool state) {
    fs.EnableDebug(state);
 }
 
-const string  Bold_On="\033[1m";
 const char* s_boldOn() {
    fs.Bold(kOn);
    return fs.GetCode();
