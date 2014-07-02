@@ -18,6 +18,7 @@ namespace po = boost::program_options;
 
 using namespace std;
 using namespace FormatStream;
+//using namespace BoostStringTextProc;
 
 typedef deque<string> StrDeque;
 typedef StrDeque::const_iterator StrDequeCItr;
@@ -198,7 +199,7 @@ int main(int ac, char* av[]) {
          cout << s_yellow() << ZiegVersion::UUID << endl;
       }
 
-      if (vm.count("color") || vm.count("extcolor")) {
+      if (vm.count("extcolor")) {
          cout << s_boldOn() << s_ulineOn() << s_ltGreen() << "Colors:" << endl;
          cout << s_ulineOff() << s_reset();
          cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
@@ -226,18 +227,17 @@ int main(int ac, char* av[]) {
          cout << s_invOn()      << "  Inverted text";
          cout << s_invOff()     << " Non-inverted (normal) text" << endl;
          cout << s_reset() << endl;
-         if (vm.count("extcolor")) {
-            CycleOutputFormats(&s_black, "Black", cout);
-            CycleOutputFormats(&s_red, "Red", cout);
-            CycleOutputFormats(&s_green, "Green", cout);
-            CycleOutputFormats(&s_brown, "Yellow", cout);  // yellow is bold brown
-            CycleOutputFormats(&s_blue, "Blue", cout);
-            CycleOutputFormats(&s_purple, "Purple", cout);
-            CycleOutputFormats(&s_cyan, "Cyan", cout);
-            CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
-            cout << endl;
-         }
-         cout << "Note: If you see garbage characters, then your "
+
+         CycleOutputFormats(&s_black, "Black", cout);
+         CycleOutputFormats(&s_red, "Red", cout);
+         CycleOutputFormats(&s_green, "Green", cout);
+         CycleOutputFormats(&s_brown, "Yellow", cout);  // yellow is bold brown
+         CycleOutputFormats(&s_blue, "Blue", cout);
+         CycleOutputFormats(&s_purple, "Purple", cout);
+         CycleOutputFormats(&s_cyan, "Cyan", cout);
+         CycleOutputFormats(&s_ltGray, "White", cout);  // white is bold lt grey
+
+         cout << endl << "Note: If you see garbage characters, then your "
                "terminal does not support colors." << endl << endl;
       }
 
