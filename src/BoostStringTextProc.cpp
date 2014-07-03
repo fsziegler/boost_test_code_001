@@ -161,6 +161,13 @@ void Bind() {
          "arbitrary function objects, functions, function pointers, and member "
          "function pointers, and is able to bind any argument to a specific "
          "value or route input arguments into arbitrary positions.\"");
+//   Using bind with functions and function pointers
+//   Using bind with function objects
+//   Using bind with pointers to members
+//   Using nested binds for function composition
+//   Overloaded operators (new in Boost 1.33)
+//   Using bind with standard algorithms (Example)
+//   Using bind with Boost.Function (Example)
 }
 
 void Function() {
