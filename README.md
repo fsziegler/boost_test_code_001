@@ -10,25 +10,15 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 * Install Linux onto a PC. The commands listed here are for flavors of Debian Linux, which support the `apt-get` command for installing and updating software. I used [Kubuntu](http://www.kubuntu.org/getkubuntu), a variant of Debian Linux, to develop these instructions and code, as it has my favorite Linux GUI.<br>
 * Install the latest version of Eclipse CDT. See [this site](http://askubuntu.com/questions/26632/how-to-install-eclipse) for instructions on how to do this - apt-get and the Ubuntu Software Center tend to not have the latest versions.
 * My practice is to create a single root directory for all libraries I will use to develop software. I create ~/dev for this (~/ is the Linux placeholder for /home/_username_/).<br>
- * `mkdir ~/dev`<br>
+ * `mkdir ~/dev`<br>hi	
+* If you want to build the Boost libraries, instructions can be found [here](/https://github.com/fsziegler/boost_test_code_001/blob/master/Build Boost Libraries.md).
 * These instructions are from [Boost's "Getting Started on Unix Variants"](http://www.boost.org/doc/libs/1_55_0/more/getting_started/unix-variants.html), but also we want Boost to include OpenMPI, Python support, and bzip file compression support, which enables every aspect of Boost. **You may skip steps 1, 2, and/or 3 if you do not want the associated capability.**<br>
 
-##Instructions for installing Boost:<br>
-1. Install the **[Python](https://www.python.org/)** development tools<br>
- * Find your Python version (`python --version`) and install its development tools (e.g., `sudo apt-get install python2.7-dev`)<br>
- * _`aptitude search python | grep dev` will show all dev packages for Python_<br>
-2. Install the latest **[bzip](http://www.bzip.org/)** library
+##Instructions for installing the Boost Libraries:<br>
+1. Install the latest **[bzip](http://www.bzip.org/)** library
  * e.g., run `sudo apt-get install libbz2-dev`<br>
  * _`aptitude search libbz | grep dev` will show all dev packages for libbz_<br>
-3. Install the latest **[OpenMPI](http://www.open-mpi.org/software/ompi/)** library
- * Download openmpi-_version_.tar.gz, extract it into its own directory (e.g., ~/dev/openmpi-1.8.1), and `cd` to there<br>
- * `sudo ./configure --prefix=/usr/local` _(this takes tens of minutes)_<br>
- * `sudo make all install` _(this takes tens of minutes)_<br>
-4. Install the latest **[Boost](http://www.boost.org/users/download/)** library
- * Download boost\__version_.tar.gz, extract it into its own directory (e.g., ~/dev/boost\_1\_55\_0), and cd to there<br>
- * Run `sudo ./bootstrap.sh` _(this takes tens of minutes)_<br>
- * If you performed step (3), then `gedit ./tools/build/v2/user-config.jam` and append "using mpi ;" to it (including the space before ';')<br>
- * Run `sudo ./b2` _(this takes tens of minutes)_<br>
+2. Run `aptitude search libboost | grep -o "[^ ]*1.55-dev " | sudo apt-get install`
 
 ##Instructions for configuring Eclipse<br>
 When creating a project in Eclipse that uses Boost, you must configure Eclipse to build with Boost. Select Project:Properties, which opens the Properties dialog box, and select "[All configurations]" in the Configuration field. _Be sure to do this each time you open the Properties dialog box_. Then:<br>
