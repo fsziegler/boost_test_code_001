@@ -14,7 +14,10 @@ using namespace FormatStream;
 
 // <Random>
 #include <boost/random/linear_congruential.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/random/uniform_real.hpp>
+#pragma GCC diagnostic pop
 #include <boost/random/variate_generator.hpp>
 
 typedef boost::minstd_rand base_generator_type;

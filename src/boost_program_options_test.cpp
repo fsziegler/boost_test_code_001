@@ -6,7 +6,10 @@
 // Description : Test code for various Boost libraries
 //============================================================================
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
+#pragma GCC diagnostic pop
 #include <deque>
 #include <string>
 

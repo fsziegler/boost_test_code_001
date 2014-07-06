@@ -38,11 +38,11 @@ namespace ZiegVersion
    string MinorVersion = "0";
 
 // These are updated automatically with each build
-   long int BuildNumber = 1580;
-   long int UTCSeconds = 1404439234;   // Updated with date +%s
-   string BuildDate = "2014-07-03";    // Updated with date +%F
-   string BuildTime = "19:00:34";      // Updated with date +%T
-   string UUID = "fc50d1e8-031e-11e4-bd63-43cb7ad70dc0"; // Updated with uuid
+   long int BuildNumber = 1615;
+   long int UTCSeconds = 1404659615;   // Updated with date +%s
+   string BuildDate = "2014-07-06";    // Updated with date +%F
+   string BuildTime = "08:13:35";      // Updated with date +%T
+   string UUID = "19d596b0-0520-11e4-a222-6fae5e1dac4e"; // Updated with uuid
    
    string GetFullVersionString() {
       stringstream fullVersion;
