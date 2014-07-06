@@ -54,7 +54,7 @@
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_chrono"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1651728875" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/home/fred/dev/boost_1_55_0/stage/lib"/>
+									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
 								</option>
 								<option id="gnu.cpp.link.option.flags.1141152643" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-static -lpthread -std=c++11" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1856955863" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
