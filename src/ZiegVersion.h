@@ -34,15 +34,16 @@ using namespace std;
 namespace ZiegVersion
 {
 // These are not updated automatically
-   string MajorVersion = "0";
-   string MinorVersion = "0";
+   const string MajorVersion = "0";
+   const string MinorVersion = "0";
 
 // These are updated automatically with each build
-   long int BuildNumber = 1615;
-   long int UTCSeconds = 1404659615;   // Updated with date +%s
-   string BuildDate = "2014-07-06";    // Updated with date +%F
-   string BuildTime = "08:13:35";      // Updated with date +%T
-   string UUID = "19d596b0-0520-11e4-a222-6fae5e1dac4e"; // Updated with uuid
+
+   const long int BuildNumber = 1619;
+   const long int UTCSeconds = 1404663278;   // Updated with date +%s
+   const string BuildDate = "2014-07-06";    // Updated with date +%F
+   const string BuildTime = "09:14:38";      // Updated with date +%T
+   const string UUID = "a0db1a92-0528-11e4-b405-d3ac74453c1e"; // Updated with uuid
    
    string GetFullVersionString() {
       stringstream fullVersion;
