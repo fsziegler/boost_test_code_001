@@ -11,7 +11,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
   * const static strings for **MajorVersion and MinorVersion** which developers may update at the appropriate time<br>
   * const long ints for **BuildNumber and UTCSeconds** *(updated automatically)*<br>
   * const strings for **BuildDate, BuildTime, and a UUID** *(updated automatically)*<br>
-  * *Running `boost_test_code_001 -v` demonstrates output from this feature.*<br>
+  * *Running `boost_test_code_001 -v` demonstrates output from this feature. See this [sample screenshot](./Bash_Version_Snapshot.png).*<br>
  * **Bash terminal color functions** that may be streamed with other command line output. This comprises two files, FormatStream.h and FormatStream.cpp. The functions may be inserted into a C++ ostream for **enabling and disabling bold, underline, inverse, background, and intensity**, as well as **setting the text or back ground black, red, green, yellow, blue, purple, cyan, and white**.
   * *Running `boost_test_code_001 --extcolor` demonstrates output from this feature. See this [sample screenshot](./Bash_Colors_Snapshot.png).*<br>
 
