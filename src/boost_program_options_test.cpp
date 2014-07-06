@@ -21,7 +21,6 @@ namespace po = boost::program_options;
 
 using namespace std;
 using namespace FormatStream;
-//using namespace BoostStringTextProc;
 
 typedef deque<string> StrDeque;
 typedef StrDeque::const_iterator StrDequeCItr;
@@ -104,9 +103,9 @@ void printCombo(bool bold, bool uline, bool inv, bool bckgnd, bool intens,
 
 void CycleOutputFormats(const char* (*color_func)(), const char* color_str,
       ostream& out_strm) {
-   out_strm << s_reset() << color_str << " ";
+   out_strm << s_reset() << endl << color_str << " ";
    out_strm << s_boldOn() << s_ulineOn() << (*color_func)() << color_str << endl;
-   out_strm << s_boldOff() << s_ulineOff() << s_reset() << endl;
+   out_strm << s_boldOff() << s_ulineOff() << s_reset();
    for (int bold = 0; bold < 2; ++bold) {
       for (int uline = 0; uline < 2; ++uline) {
          for (int inverse = 0; inverse < 2; ++inverse) {
