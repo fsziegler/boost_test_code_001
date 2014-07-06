@@ -4,9 +4,9 @@
 ###Background
 The Boost libraries are a collection of very powerful, robust, and highly regarded C++ libraries. A [subset](http://www.boost.org/doc/libs/1_55_0/doc/html/boost_tr1.html) of the libraries was accepted into the C++ standard. Bjarne Stroustrup, the inventor of C++,  references the Boost libraries on [his web page about C++11](http://www.stroustrup.com/C++11FAQ.html).
 ###Main Purpose
-This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001) is intended to contain all the instructions and code required to load, build, and run the test programs using Eclipse CDT (**C/C++ Development Tools**). It has been developeed using the Kepler version of [**Eclipse CDT**](http://www.eclipse.org/cdt/downloads.php), [**g++**](https://gcc.gnu.org/) 4.8.2, [**Boost**](http://www.boost.org/users/download/) 1.55, [**OpenMPI**](http://www.open-mpi.org/software/ompi/v1.8/) 1.8.1, and was developed on the [**Kubuntu**](http://www.kubuntu.org/getkubuntu) 14.04 operating system.<br>
+This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001) is intended to contain all the instructions and code required to load, build, and run the test programs using Eclipse CDT (**C/C++ Development Tools**). It has been developed using the Kepler version of [**Eclipse CDT**](http://www.eclipse.org/cdt/downloads.php), [**g++**](https://gcc.gnu.org/) 4.8.2, [**Boost**](http://www.boost.org/users/download/) 1.55, [**OpenMPI**](http://www.open-mpi.org/software/ompi/v1.8/) 1.8.1, and was developed on the [**Kubuntu**](http://www.kubuntu.org/getkubuntu) 14.04 operating system.<br>
 
-###Additional Utilities (written by Fred Ziegler)
+###Additional Utilities (written by the author)
  * **Automated versioning code** that integrates with Eclipse, as well as stand-alone gcc/g++. This comprises two files, ZiegVersion.h and ZiegVersion.sh. The former is a C++ header file with various versioning info that get updated automatically by the latter with each build:<br>
   * const static strings for **MajorVersion and MinorVersion** which developers may update at the appropriate time<br>
   * const long ints for **BuildNumber and UTCSeconds** *(updated automatically)*<br>
