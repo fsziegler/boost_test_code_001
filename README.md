@@ -60,3 +60,4 @@ When creating a project in Eclipse that uses Boost, you must configure Eclipse t
 ###Miscellaneous<br>
  * Debugging STL structures is much easier if you use "pretty-printing" - see this [Eclipse Wiki](http://wiki.eclipse.org/CDT/User/FAQ#I.27ve_been_asked_for_.27gdb_traces.27.2C_where_can_I_find_them.3F) for instructions. When checking out the pretty printing script, replace "svn:" with "http:" - `svn co http://gcc.gnu.org/svn/gcc/trunk/libstdc++-v3/python`.<br>
   * You can find the location of the gdbinit file with `locate gdbinit`.
+  * The same Wiki has instructions for enabling reverse debugging (Window:Customize Perspective:[tab]Command Groups Availability:[column]Available command groups, check "Reverse Debugging").
