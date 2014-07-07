@@ -205,7 +205,7 @@ int main(int ac, char* av[]) {
          cout << s_boldOn() << s_ulineOn() << s_ltGreen() << "Colors:" << endl;
          cout << s_ulineOff() << s_reset();
          cout << "Black DkGray Red LtRed Green LtGreen Brown Yellow Blue "
-               "Purple LtPurple LtBlue Cyan LtCyan LtGray White" << endl;
+               "LtBlue Purple LtPurple Cyan LtCyan LtGray White" << endl;
          cout << s_black()      << "Black ";
          cout << s_dkGray()     << "DkGray ";
          cout << s_red()        << "Red ";
