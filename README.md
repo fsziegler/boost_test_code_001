@@ -27,7 +27,7 @@ This [public GitHub repository](https://github.com/fsziegler/boost_test_code_001
 1. Install the latest **[bzip](http://www.bzip.org/)** library
  * e.g., run `sudo apt-get install libbz2-dev`<br>
  * _`aptitude search libbz | grep dev` will show all dev packages for libbz_<br>
-2. Run `sudp apt-get install libboost1.55-all-dev` to install all of the Boost libraries.<br>
+2. Run `sudo apt-get install libboost1.55-all-dev` to install all of the Boost libraries.<br>
 
 ##Instructions for configuring Eclipse<br>
 When creating a project in Eclipse that uses Boost, you must configure Eclipse to build with Boost. Select Project:Properties, which opens the Properties dialog box, and select "[All configurations]" in the Configuration field. _Be sure to do this each time you open the Properties dialog box_. Then:<br>
@@ -60,3 +60,4 @@ When creating a project in Eclipse that uses Boost, you must configure Eclipse t
 ###Miscellaneous<br>
  * Debugging STL structures is much easier if you use "pretty-printing" - see this [Eclipse Wiki](http://wiki.eclipse.org/CDT/User/FAQ#I.27ve_been_asked_for_.27gdb_traces.27.2C_where_can_I_find_them.3F) for instructions. When checking out the pretty printing script, replace "svn:" with "http:" - `svn co http://gcc.gnu.org/svn/gcc/trunk/libstdc++-v3/python`.<br>
   * You can find the location of the gdbinit file with `locate gdbinit`.
+  * The same Wiki has instructions for enabling reverse debugging (Window:Customize Perspective:[tab]Command Groups Availability:[column]Available command groups, check "Reverse Debugging").
