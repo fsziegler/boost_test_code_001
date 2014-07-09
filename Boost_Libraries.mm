@@ -1,4 +1,4 @@
-<map version="0.9.0">
+<map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node COLOR="#000000" CREATED="1404672803124" ID="ID_733156638" MODIFIED="1404676998729">
 <richcontent TYPE="NODE"><html>
@@ -12,13 +12,12 @@
     <table cellpadding="3" cellspacing="0">
       <tr>
         <td valign="bottom" style="font-size: 10pt" colspan="7" align="left">
-          Adapted from &quot;http://www.boost.org/doc/libs/?view=categorized&quot;
+          Adapted from "http://www.boost.org/doc/libs/?view=categorized"
         </td>
       </tr>
     </table>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font NAME="SansSerif" SIZE="20"/>
 <hook NAME="accessories/plugins/AutomaticLayout.properties"/>
 <node COLOR="#0033ff" CREATED="1404673252985" ID="ID_205543606" MODIFIED="1404677983934" POSITION="right" TEXT="String and text processing">
