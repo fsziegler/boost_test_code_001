@@ -24,7 +24,6 @@
 #        File: ziegversion.sh
 #  Created on: Jun 26, 2014
 #      Author: Fred Ziegler
-# Copyright 2014 Frederick S. Ziegler
 
 sed -i -r 's/(const long int BuildNumber = )([0-9]+)/echo \1$((\2+1))/ge' ../src/ZiegVersion.h
 sed -i -r "s/(const long int BuildNumber = )([0-9]+)/   const long int BuildNumber = \2;/g" ../src/ZiegVersion.h
