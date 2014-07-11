@@ -23,7 +23,6 @@ SOFTWARE.
 // Name        : boost_program_options_test.cpp
 // Author      : Fred Ziegler
 // Version     :
-// Copyright   : Copyright 2014 Frederick S. Ziegler
 // Description : Test code for various Boost libraries
 //============================================================================
 
