@@ -16,7 +16,7 @@
 
 ###Manually integrating an application in GNOME without apt-get
 
-Often, the latest version of an application is not available through apt-get. Following are instructions for making an unsupported version or an application show up in the GNOME menus.<br>
+Often, the latest version of an application is not available through apt-get. Following are instructions for making an unsupported version of an application show up in the GNOME menus.<br>
 
 1. Download and copy the application (_myapp_) to a directory of your choice (e.g., ~/bin/myapp).<br>
 2. If this is not a later version of _myapp_, then skip to (3).<br>
@@ -28,7 +28,7 @@ Often, the latest version of an application is not available through apt-get. Fo
 5. Copy (or move) _myapp_ to this directory. E.g., `cd ~/bin/myapp && sudo cp -r . /usr/share/myapp/`<br>
 6. Create a link in /usr/bin to the new application's executable; e.g., `cd  /usr/bin && sudo ln -s /usr/share/myapp/myapp.sh /usr/bin/myapp`.<br>
 7. Run desktop-file-install<br>
- * `sudo apt-get install desktop-file-install`<br>
+ * `sudo apt-get install desktop-file-utils`<br>
  * `cd /usr/share/applications && sudo desktop-file-install myapp.desktop` 
 8. The application should now be accessible and executable from the GNOME menu.
 
